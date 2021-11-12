@@ -30,10 +30,61 @@ public class SomeServerBis {
                     break;
                 }
                 out.writeUTF("Эхо: " + message);
+                serverMessageConnection();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+    }
+    private static void serverMessageConnection() { // домашнее задание
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        Scanner scanner = new Scanner(System.in);
+                        final String serverMessage = scanner.nextLine();
+                        if (!serverMessage.isEmpty()) {
+                            //return;
+                            if ("/end".equals(serverMessage)) {
+                                break;
+                            }
+                            out.writeUTF("Сообщение от сервера: " + serverMessage);
+                        }
+                        if ("/end".equals(serverMessage)) {
+                            break;
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    closeConnection();
+                }
+            }
+        }).start();
+    }
+    private static void closeConnection() {
+        if (socket != null) {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (in != null) {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (out != null) {
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.exit(0);
     }
 }
