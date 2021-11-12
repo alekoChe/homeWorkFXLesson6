@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<!--<VBox fx:controller="com.example.lesson4fx.HelloController" xmlns:fx="http://javafx.com/fxml" spacing="10">-->
+<VBox  spacing="10.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ru.gbquoter2.homeworkfxlesson6.AppController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <MenuBar>
+        <Menu text="File">
+            <Menu text="Exit" onAction="#exit"/>
+        </Menu>
+        <Menu text="Edit">
+            <Menu text="Delete" onAction="#deleteText"/>
+        </Menu>
+    </MenuBar>
+
+<!--    <Label fx:id="welcomeText"/>-->
+    <TextArea fx:id="messageArea" VBox.vgrow="ALWAYS" editable="false"/>
+<!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
+    <HBox spacing="10">
+        <TextField fx:id="messageField" HBox.hgrow="ALWAYS"/>
+        <Button text="Send" onAction="#clickSendButton" defaultButton="true"/>
+    </HBox>
+</VBox>
